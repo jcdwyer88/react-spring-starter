@@ -13,7 +13,6 @@ public class ToDoService {
         this.toDoRepository = toDoRepository;
     }
 
-
     public List<ToDo> fetchToDos(){
         return toDoRepository.findAll();
     }
@@ -21,4 +20,9 @@ public class ToDoService {
     public ToDo createToDo(ToDo newToDo) {
         return toDoRepository.save(newToDo);
     }
+
+    public void deleteToDo(long id) {
+        toDoRepository.deleteById(id);
+    }
+
 }

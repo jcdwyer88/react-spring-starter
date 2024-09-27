@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -36,4 +37,13 @@ public class ToDoServiceTest {
         assertThat(toDo.getText()).isEqualTo("my task");
         assertThat(toDo.getStatus()).isEqualTo("active");
     }
+
+    @Test
+    void deleteToDoShouldRemoveAToDo() {
+        ToDo toDo = toDoService.createToDo(new ToDo(null, "my task", "active"));
+        toDoService.deleteToDo(toDo.getId());
+        Optional<ToDo> optionalToDo = toDoRepository.findById(toDo.getId());
+        assertThat(optionalToDo).isEmpty();
+    }
+
 }

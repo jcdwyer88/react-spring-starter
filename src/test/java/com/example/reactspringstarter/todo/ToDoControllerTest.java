@@ -15,6 +15,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -52,4 +53,13 @@ class ToDoControllerTest {
         verify(toDoService, times(1)).createToDo(captor.capture());
         assertThat(captor.getValue()).usingRecursiveComparison().isEqualTo(newToDo);
     }
+
+    @Test
+    void shouldAcceptDeleteRequestsToRemoveATodo() throws Exception {
+        mvc.perform(delete("/api/todos/10"))
+                .andExpect(status().isOk());
+
+        verify(toDoService, times(1)).deleteToDo(10L);
+    }
+
 }

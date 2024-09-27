@@ -24,7 +24,7 @@ const HomePage = () => {
                 </Button>
             </Stack>
             <Typography variant='h5' color={grey[500]} paddingBottom={2}>
-                Frontend packages
+                Frontend Packages
             </Typography>
             <Stack direction='row' gap={4}>
                 <MuiLink color='secondary' textAlign='center' fontSize={{xs: 'large', md: 'x-large'}} href='https://mui.com/material-ui/getting-started/overview/' rel='noreferrer' target='_blank'>
